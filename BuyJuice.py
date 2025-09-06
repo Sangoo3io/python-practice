@@ -13,12 +13,12 @@ MENU = {
 }
 
 # 自販機インスタンスを作るときに必要な、お金が何も入ってない変数を定義する
-FIRSTAMOUNT = 0
+INITIAL_AMOUNT = 0
 MINIMUMPRICE = 100
 
 # 数字かどうかチェックする関数
-def validation(Target_number):
-    if Target_number.isdigit() == True:
+def validation(target_number):
+    if target_number.isdigit() == True:
         # print("これは数字です")
         return True
     else:
@@ -46,17 +46,17 @@ class VendingMachine:
     # 売られているドリンクを表示するshow_drinksメソッドを作る
     def show_drinks(self):
         print("--------------")
-        for selling_items in MENU:
-            if MENU[selling_items].stock > 0:
-                print(f"{selling_items}：{MENU[selling_items].price}円")
+        for selling_items in self.menu:
+            if self.menu[selling_items].stock > 0:
+                print(f"{selling_items}：{self.menu[selling_items].price}円")
             else:
-                print(f"{selling_items}：{MENU[selling_items].price}円（売り切れ）")
+                print(f"{selling_items}：{self.menu[selling_items].price}円（売り切れ）")
             print("--------------")
 
-    # ジュースを買うBuyJuiceメソッドを作る
+    # ジュースを買うbuy_drinksメソッドを作る
     def buy_drinks(self):
         which_to_buy = input("何を買いますか？：")
-        if which_to_buy in MENU: #menuの中に一致するジュースがあるか？
+        if which_to_buy in self.menu: #menuの中に一致するジュースがあるか？
             if self.menu[which_to_buy].stock > 0: #在庫があるか？
                 if self.menu[which_to_buy].price <= self.amount: #それが投入額以下の金額か？
                     print(f"ガラガラガラ…{which_to_buy}が下の方から出てきました。") #それを購入したログを出す
@@ -79,7 +79,7 @@ class VendingMachine:
             self.amount = 0
 
 # 以上のメソッド(機能)を持つ自動販売機「sanden」を作る
-sanden = VendingMachine(MENU,FIRSTAMOUNT)
+sanden = VendingMachine(MENU,INITIAL_AMOUNT)
 
 # メイン処理スタート
 # 自販機について紹介したのち、行動を決めさせる
