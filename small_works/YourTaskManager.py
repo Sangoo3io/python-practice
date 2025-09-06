@@ -1,7 +1,7 @@
 FILENAME="tasks.txt"
 
-import ReadFiles
-import EditFiles
+import small_works.ReadFiles as ReadFiles
+import small_works.EditFiles as EditFiles
 
 # 選択肢を表示
 while True:
